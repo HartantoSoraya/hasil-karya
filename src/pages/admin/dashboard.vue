@@ -7,6 +7,17 @@ import { useTruckStore } from '@/stores/truck'
 import { useCheckerStore } from '@/stores/checker'
 import { useMaterialMovementStore } from '@/stores/materialMovement'
 import { useCommonStore } from '@/stores/common'
+import { useAuthStore } from '@/stores/auth'
+
+const { user, checkAuth } = useAuthStore()
+
+checkAuth()
+
+const is = roles => {
+  const userRole = user?.roles[0].name
+
+  return roles.includes(userRole)
+}
 
 async function fetchData(fetchFunction, options) {
   return await fetchFunction(options)
@@ -88,12 +99,13 @@ async function fetchDataAndSetupChart(fetchFunction, options, chartOptions, char
   if (chartType === 'bar') {
     chartOptions.value = {
       chart: {
-        width: '100%',
+        height: 350,
         type: chartType,
       },
       plotOptions: {
         bar: {
-          horizontal: false,
+          borderRadius: 4,
+          horizontal: true,
         },
       },
       xaxis: {
@@ -109,19 +121,6 @@ async function fetchDataAndSetupChart(fetchFunction, options, chartOptions, char
         },
         offsetY: -20, 
       },
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: '100%',
-            },
-            legend: {
-              position: 'bottom',
-            },
-          },
-        },
-      ],
     }
 
     chartSeries.value = [
@@ -368,8 +367,8 @@ onMounted(() => {
         </h4>
 
         <apexchart
-          width="100%"
           type="bar"
+          height="350"
           :options="chartOptionsRatioMeasurementByRitage"
           :series="chartSeriesRatioMeasurementByRitage"
         />
