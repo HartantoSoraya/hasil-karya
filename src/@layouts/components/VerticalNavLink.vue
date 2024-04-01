@@ -91,6 +91,8 @@ if (props.item.children) {
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 0.75rem 1rem;
+    width: 300px;
   }
 }
 </style>

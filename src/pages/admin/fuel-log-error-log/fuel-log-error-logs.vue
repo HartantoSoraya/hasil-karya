@@ -4,6 +4,15 @@ import { toNumeral, formatDate } from '@/@core/utils/formatters'
 
 const headers = [
   {
+    text: 'Jenis Akun',
+    value: 'creator_type',
+    width: 50,
+  },
+  {
+    text: 'Dibuat Oleh',
+    value: 'created_by',
+  },
+  {
     text: 'Tgl Error Log',
     value: 'created_at',
     width: 100,
