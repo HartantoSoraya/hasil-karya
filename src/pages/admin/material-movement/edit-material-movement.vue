@@ -162,7 +162,7 @@ const handleSubmit = () => {
     truck_id: truck_id.value,
     station_id: station_id.value,
     checker_id: checker_id.value,
-    observation_ratio: observation_ratio.value / 100,
+    observation_ratio: observation_ratio.value,
     solid_ratio: solid_ratio.value,
     remarks: remarks.value,
   })
