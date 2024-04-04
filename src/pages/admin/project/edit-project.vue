@@ -777,6 +777,7 @@ const fetchProjectData = async () => {
     person_in_charge.value = project.person_in_charge
     amount.value = project.amount
     client_id.value = project.client.id
+    
     province.value = provinces.value.find(item => item.nama === project.province)?.id
 
     await fetchRegencies(province.value)
