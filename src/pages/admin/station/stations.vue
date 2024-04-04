@@ -17,6 +17,10 @@ const headers = [
     value: 'category',
   },
   {
+    text: 'Muatan',
+    value: 'material.name',
+  },
+  {
     text: 'Aktif',
     value: 'is_active',
   },
