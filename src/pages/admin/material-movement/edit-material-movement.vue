@@ -49,10 +49,8 @@
             </VCol>
 
             <VCol cols="12" md="6">
-              <VTextField v-model="observation_ratio" label="Presentase Rasio Index"
-                placeholder="Masukan Presentase Rasio Index"
-                :error-messages="error && error.observation_ratio ? [error.observation_ratio] : []"
-                type="number"/>
+              <VTextField v-model="observation_ratio" label="Rasio Index" placeholder="Masukan Rasio Index"
+                :error-messages="error && error.observation_ratio ? [error.observation_ratio] : []" type="number" />
             </VCol>
 
             <VCol cols="12" md="6">
@@ -111,7 +109,7 @@ fetchTrucks()
 fetchStations({ type: 'station' })
 fetchCheckers()
 
-const { materialMovement, loading, error } = storeToRefs(useMaterialMovementStore())
+const { loading, error } = storeToRefs(useMaterialMovementStore())
 const { fetchMaterialMovement, updateMaterialMovement } = useMaterialMovementStore()
 
 const materialMovementId = route.params.id
@@ -125,7 +123,6 @@ const checker_id = ref('')
 const observation_ratio = ref('')
 const solid_ratio = ref('')
 const remarks = ref('')
-const payment_proof_image = ref(null)
 
 const fetchMaterialMovementData = async () => {
   try {
@@ -139,10 +136,9 @@ const fetchMaterialMovementData = async () => {
     truck_id.value = materialMovementData.truck.id
     station_id.value = materialMovementData.station.id
     checker_id.value = materialMovementData.checker.id
-    observation_ratio.value = materialMovementData.observation_ratio
+    observation_ratio.value = toNumeral(materialMovementData.observation_ratio)
     solid_ratio.value = toNumeral(materialMovementData.solid_ratio)
     remarks.value = materialMovementData.remarks
-    payment_proof_image.value = materialMovementData.payment_proof_image
   } catch (error) {
     console.error(error)
   }

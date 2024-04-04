@@ -36,18 +36,13 @@ const headers = [
 
   },
   {
-    text: 'Presentase Rasio Index',
-    value: 'observation_ratio_percentage',
-    width: 200,
-  },
-  {
     text: 'Kapasitas Truk',
     value: 'truck_capacity',
     width: 200,
   },
   {
     text: 'Rasio Index',
-    value: 'observation_ratio_number',
+    value: 'observation_ratio',
     width: 200,
   },
   {
@@ -154,21 +149,17 @@ onUnmounted(() => {
           <template #item-date="item">
             {{ formatDate(item.date) }}
           </template>
-
-          <template #item-observation_ratio_percentage="item">
-            {{ toPercentage(item.observation_ratio_percentage) }}
-          </template>
           
           <template #item-truck_capacity="item">
             {{ toNumeral(item.truck_capacity) }} m³
           </template>
 
-          <template #item-observation_ratio_number="item">
-            {{ toNumeral(item.observation_ratio_number) }} m³
+          <template #item-observation_ratio="item">
+            {{ toNumeral(item.observation_ratio) }} m³ ({{ toPercentage(item.observation_ratio / item.truck_capacity) }})
           </template>
 
           <template #item-solid_ratio="item">
-            {{ toPercentage(item.solid_ratio) }}
+            {{ toNumeral(item.solid_ratio) }}
           </template>
 
           <template #item-solid_volume_estimate="item">
