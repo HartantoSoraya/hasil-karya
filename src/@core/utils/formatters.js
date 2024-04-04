@@ -42,7 +42,7 @@ export const formatDateToMonthShort = (value, toTimeForCurrentDay = true) => {
 export const prefixWithPlus = value => value > 0 ? `+${value}` : value
 
 export const toRupiah = value => {
-  const formatter = new Intl.NumberFormat('id-ID', {
+  const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0,
@@ -53,7 +53,12 @@ export const toRupiah = value => {
 
 
 export const toNumeral = value => {
-  const formatter = new Intl.NumberFormat('id-ID', {
+  // const formatter = new Intl.NumberFormat('id-ID', {
+  //   style: 'decimal',
+  //   minimumFractionDigits: 0,
+  // })
+
+  const formatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
     minimumFractionDigits: 0,
   })
@@ -62,7 +67,7 @@ export const toNumeral = value => {
 }
 
 export const toPercentage = value => {
-  const formatter = new Intl.NumberFormat('id-ID', {
+  const formatter = new Intl.NumberFormat('en-US', {
     style: 'percent',
     minimumFractionDigits: 0,
   })
