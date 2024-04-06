@@ -12,8 +12,6 @@ const { trucks } = storeToRefs(useTruckStore())
 const { stations } = storeToRefs(useStationStore())
 const { user, checkAuth } = useAuthStore()
 
-
-
 const { fetchDrivers } = useDriverStore()
 const { fetchTrucks } = useTruckStore()
 const { fetchStations } = useStationStore()
@@ -26,13 +24,11 @@ checkAuth()
 const { success, loading, error } = storeToRefs(useMaterialMovementStore())
 const { createMaterialMovementCheckers } = useMaterialMovementStore()
 
-
-
 const driver_id = ref('')
 const truck_id = ref('')
 const station_id = ref('')
 const checker_id = ref(user.checker.id)
-const observation_ratio_percentage = ref('')
+const observation_ratio = ref('')
 const remarks = ref('')
 
 const handleReset = () => {
@@ -40,7 +36,7 @@ const handleReset = () => {
   truck_id.value = ''
   station_id.value = ''
   checker_id.value = user.checker.id
-  observation_ratio_percentage.value = ''
+  observation_ratio.value = ''
   remarks.value = ''
 }
 
@@ -50,7 +46,7 @@ const handleSubmit = () => {
     truck_id: truck_id.value,
     station_id: station_id.value,
     checker_id: checker_id.value,
-    observation_ratio_percentage: observation_ratio_percentage.value / 100,
+    observation_ratio: observation_ratio.value,
     remarks: remarks.value,
   })
 
@@ -129,21 +125,6 @@ onUnmounted(() => {
               md="6"
             >
               <VAutocomplete
-                v-model="observation_ratio_percentage"
-                :items="[{ label: '30%', value: 30 }, { label: '40%', value: 40 }, { label: '50%', value: 50 }, { label: '60%', value: 60 }, { label: '70%', value: 70 }, { label: '80%', value: 80 }, { label: '90%', value: 90 }, { label: '100%', value: 100 }]"
-                label="Observation Ratio"
-                placeholder="Pilih Observation Ratio"
-                :error-messages="error && error.observation_ratio_percentage ? [error.observation_ratio_percentage] : []"
-                :item-title="ratio => ratio.label"
-                :item-value="ratio => ratio.value"
-              />
-            </VCol>
-
-            <VCol
-              cols="12"
-              md="6"
-            >
-              <VAutocomplete
                 v-model="station_id"
                 :items="stations"
                 label="POS"
@@ -151,6 +132,20 @@ onUnmounted(() => {
                 :error-messages="error && error.station_id ? [error.station_id] : []"
                 :item-title="station => station.name"
                 :item-value="station => station.id"
+              />
+            </VCol>
+
+            <VCol
+              cols="12"
+              md="6"
+            >
+              <VTextField
+                v-model="observation_ratio"
+                label="Rasio Index"
+                placeholder="Masukan Rasio Index"
+                :error-messages="error && error.observation_ratio ? [error.observation_ratio] : []"
+                type="number"
+                suffix="m³"
               />
             </VCol>
 
@@ -165,7 +160,7 @@ onUnmounted(() => {
                 :error-messages="error && error.remarks ? [error.remarks] : []"
               />
             </VCol>
-            
+
 
             <VCol
               cols="12"
