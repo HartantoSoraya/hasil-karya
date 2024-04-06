@@ -148,6 +148,15 @@ const is = roles => {
   />
 
   <VerticalNavLink
+    v-if="is(['admin'])"
+    :item="{
+      title: 'Estimasi Volume Padat',
+      icon: 'bx-transfer',
+      to: '/admin/material-movement-solid-volume-estimates',
+    }"
+  />
+
+  <VerticalNavLink
     v-if="is(['technical-admin'])"
     :item="{
       title: 'Perpindahan Material',

@@ -79,7 +79,7 @@ onUnmounted(() => {
       class="d-flex justify-space-between align-items-center"
     >
       <h2 class="mb-0">
-        Tambah Material Movement
+        Tambah Perpindahan Material
       </h2>
 
       <VBtn
@@ -245,7 +245,7 @@ onUnmounted(() => {
   </VRow>
 </template>
 
-\
+
 <style lang="scss">
 .v-row {
   margin: 0px !important
