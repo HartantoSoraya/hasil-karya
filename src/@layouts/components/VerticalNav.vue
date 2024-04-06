@@ -60,9 +60,9 @@ const appName = import.meta.env.VITE_APP_NAME
           to="/"
           class="app-logo d-flex align-center gap-x-3 app-title-wrapper"
         >
-          <h1 class="leading-normal">
+          <h3 class="leading-normal">
             {{ appName }}
-          </h1>
+          </h3>
         </RouterLink>
       </slot>
     </div>
