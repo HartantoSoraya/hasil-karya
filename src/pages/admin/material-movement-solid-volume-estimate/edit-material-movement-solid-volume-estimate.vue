@@ -53,10 +53,11 @@
               <VAutocomplete
                 v-model="station_id"
                 :items="stations"
-                label="Stasiun"
-                placeholder="Pilih Stasiun"
+                label="POS"
+                placeholder="Pilih POS"
                 :error-messages="error && error.station_id ? [error.station_id] : []"
                 :item-title="station => station.name"
+                :item-value="station => station.id"
               />
             </VCol>
 
@@ -77,7 +78,7 @@
               cols="12"
               md="12"
             >
-              <VTextField
+              <VTextarea
                 v-model="remarks"
                 label="Keterangan"
                 placeholder="Masukan Keterangan"

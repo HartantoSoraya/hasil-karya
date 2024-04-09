@@ -58,7 +58,7 @@ export const useMaterialMovementSolidVolumeEstimateStore = defineStore({
       try {
         this.loading = true
 
-        const response = await axiosInstance.put(`/material-movement-solid-volume-estimate/${payload.id}`, payload)
+        const response = await axiosInstance.post(`/material-movement-solid-volume-estimate/${payload.id}`, payload)
 
         this.success = response.data.message
 

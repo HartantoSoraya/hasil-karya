@@ -83,15 +83,24 @@ export const formatDate = (value,
   return new Intl.DateTimeFormat('id-ID', formatting).format(new Date(value))
 }
 
-export const formatDateTime = value => {
+export const formatDateTime = (value,
+  formatting = { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }) => {
   if (!value)
     return value
-  
-  return new Intl.DateTimeFormat('id-ID', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  }).format(new Date(value))
+
+  return new Intl.DateTimeFormat('id-ID', formatting).format(new Date(value),
+  )
 }
+
+// export const formatDateTime = value => {
+//   if (!value)
+//     return value
+  
+//   return new Intl.DateTimeFormat('id-ID', {
+//     month: 'short',
+//     day: 'numeric',
+//     year: 'numeric',
+//     hour: 'numeric',
+//     minute: 'numeric',
+//   }).format(new Date(value))
+// }

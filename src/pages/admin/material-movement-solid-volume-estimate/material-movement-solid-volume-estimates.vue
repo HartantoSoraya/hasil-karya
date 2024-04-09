@@ -1,3 +1,4 @@
+
 <script setup>
 import { useMaterialMovementSolidVolumeEstimateStore } from '@/stores/materialMovementSolidVolumeEstimate'
 import { toNumeral, formatDate } from '@/@core/utils/formatters'
@@ -112,11 +113,11 @@ onUnmounted(() => {
           show-index
           class="data-table"
         >
-          <template #item.date="{ item }">
+          <template #item-date="item">
             {{ formatDate(item.date) }}
           </template>
 
-          <template #item.solid_volume_estimate="{ item }">
+          <template #item-solid_volume_estimate="item">            
             {{ toNumeral(item.solid_volume_estimate) }}
           </template>
 

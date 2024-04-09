@@ -245,7 +245,6 @@ onUnmounted(() => {
   </VRow>
 </template>
 
-
 <style lang="scss">
 .v-row {
   margin: 0px !important

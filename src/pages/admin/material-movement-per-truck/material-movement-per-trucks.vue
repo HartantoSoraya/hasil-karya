@@ -1,11 +1,14 @@
 <script setup>
 import { useMaterialMovementStore } from '@/stores/materialMovement'
-import { toNumeral, toPercentage, formatDate } from '@/@core/utils/formatters'
+import { useTruckStore } from '@/stores/truck'
+import { toNumeral, toPercentage, formatDateTime } from '@/@core/utils/formatters'
+import { watch } from 'vue'
 
 const headers = [
   {
     text: 'Tanggal',
     value: 'date',
+    width: 200,
   },
   {
     text: 'Driver',
@@ -13,21 +16,14 @@ const headers = [
     width: 200,
   },
   {
-    text: 'Truck',
-    value: 'truck.name',
-    width: 200,
-  },
-  {
     text: 'POS',
     value: 'station.name',
     width: 200,
-
   },
   {
-    text: 'Material',
-    value: 'station.material.name',
+    text: 'Selisih Waktu',
+    value: 'date_difference',
     width: 200,
-
   },
   {
     text: 'Pemeriksa',
@@ -37,22 +33,22 @@ const headers = [
   {
     text: 'Kapasitas Truk',
     value: 'truck_capacity',
-    width: 200,
+    width: 90,
   },
   {
     text: 'Rasio Index',
     value: 'observation_ratio',
-    width: 200,
+    width: 100,
   },
   {
     text: 'Rasio Padat',
     value: 'solid_ratio',
-    width: 200,
+    width: 100,
   },
   {
     text: 'Estimasi Volume',
     value: 'solid_volume_estimate',
-    width: 200,
+    width: 100,
   },
   {
     text: 'Keterangan',
@@ -62,31 +58,34 @@ const headers = [
   {
     text: 'Aksi',
     value: 'operation',
-    width: 300,
+    width: 150,
   },
 ]
 
 const { movements, loading, error, success } = storeToRefs(useMaterialMovementStore())
-const { fetchMaterialMovements, deleteMaterialMovement } = useMaterialMovementStore()
+const { fetchMaterialMovementByTruck } = useMaterialMovementStore()
 
-fetchMaterialMovements()
+const { trucks } = storeToRefs(useTruckStore())
+const { fetchTrucks } = useTruckStore()
 
-async function handleDeleteMaterialMovement(materialMovement) {
-  const confirmed = confirm('Apakah Anda yakin ingin menghapus Perpindahan material ini?')
-  if (confirmed) {
-    await deleteMaterialMovement(materialMovement.id)
-    fetchMaterialMovements()
-  }
-}
+const selectedTruck = ref(null)
+
+fetchTrucks()
 
 const search = ref('')
 
 onMounted(() => {
-  document.title = 'Perpindahan Material'
+  document.title = 'Perpindahan Material Per Truk'
 })
 
-onUnmounted(() => {
+onMounted(() => {
   error.value = null
+})
+
+watch(selectedTruck, async truck => {
+  if (truck) {
+    await fetchMaterialMovementByTruck(truck)
+  }
 })
 </script>
 
@@ -118,15 +117,22 @@ onUnmounted(() => {
       class="d-flex justify-space-between align-items-center"
     >
       <h2 class="mb-0">
-        Perpindahan Material
+        Perpindahan Material Per Truck
       </h2>
+    </VCol>
 
-      <VBtn
-        :to="{ name: 'admin-material-movement-create' }"
-        color="primary"
-      >
-        Tambah Perpindahan Material
-      </VBtn>
+    <VCol
+      cols="12"
+      md="5"
+    >
+      <VSelect
+        v-model="selectedTruck"
+        :items="trucks"
+        :item-title="item => item.name"
+        :item-value="item => item.id"
+        label="Pilih Truck"
+        variant="solo"
+      />
     </VCol>
 
     <VCol cols="12">
@@ -152,7 +158,7 @@ onUnmounted(() => {
           class="data-table"
         >
           <template #item-date="item">
-            {{ formatDate(item.date) }}
+            {{ formatDateTime(item.date) }}
           </template>
 
           <template #item-truck_capacity="item">
@@ -176,27 +182,11 @@ onUnmounted(() => {
 
           <template #item-operation="item">
             <VBtn
-              :to="{ name: 'admin-material-movement-edit', params: { id: item.id } }"
-              color="primary"
-              size="small"
-              class="m-5"
-            >
-              Ubah
-            </VBtn>
-            <VBtn
               :to="{ name: 'admin-material-movement-view', params: { id: item.id } }"
               color="info"
               size="small"
             >
               Detail
-            </VBtn>
-            <VBtn
-              color="error"
-              size="small"
-              class="m-5"
-              @click="() => handleDeleteMaterialMovement(item)"
-            >
-              Hapus
             </VBtn>
           </template>
         </EasyDataTable>

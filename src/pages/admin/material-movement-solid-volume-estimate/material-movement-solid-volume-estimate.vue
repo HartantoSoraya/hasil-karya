@@ -55,7 +55,7 @@
                 v-model="station_id"
                 :items="stations"
                 label="Stasiun"
-                placeholder="Pilih Stasiun"
+                placeholder="Pilih POS"
                 :error-messages="error && error.station_id ? [error.station_id] : []"
                 :item-title="station => station.name"
                 :item-value="station => station.id"
@@ -80,7 +80,7 @@
               cols="12"
               md="12"
             >
-              <VTextField
+              <VTextarea
                 v-model="remarks"
                 label="Keterangan"
                 placeholder="Masukan Keterangan"
@@ -112,12 +112,12 @@ const { fetchStations } = useStationStore()
 fetchStations({ type: 'station' })
 
 const { loading, error } = storeToRefs(useMaterialMovementSolidVolumeEstimateStore())
-const { fetchMaterialMovementSolidVolumeEstimate, updateMaterialMovementSolidVolumeEstimate } = useMaterialMovementSolidVolumeEstimateStore()
+const { fetchMaterialMovementSolidVolumeEstimate } = useMaterialMovementSolidVolumeEstimateStore()
 
 const materialMovementSolidVolumeEstimateId = route.params.id
 
 const code = ref('')
-const date = ref('')
+const date = ref(new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 16))
 const station_id = ref('')
 const solid_volume_estimate = ref('')
 const remarks = ref('')
@@ -128,7 +128,7 @@ const fetchMaterialMovementSolidVolumeEstimateData = async () => {
 
     code.value = materialMovementSolidVolumeEstimateData.code
     date.value = materialMovementSolidVolumeEstimateData.date
-    station_id.value = materialMovementSolidVolumeEstimateData.station_id
+    station_id.value = materialMovementSolidVolumeEstimateData.station.id
     solid_volume_estimate.value = toNumeral(materialMovementSolidVolumeEstimateData.solid_volume_estimate)
     remarks.value = materialMovementSolidVolumeEstimateData.remarks
   } catch (error) {

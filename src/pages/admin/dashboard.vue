@@ -119,7 +119,7 @@ async function fetchDataAndSetupChart(fetchFunction, options, chartOptions, char
         formatter: function (val) {
           return val.toFixed(2) + "%"
         },
-        offsetY: -20, 
+        offsetY: -20,
       },
     }
 
@@ -133,11 +133,36 @@ async function fetchDataAndSetupChart(fetchFunction, options, chartOptions, char
 }
 
 async function fetchDataForCharts() {
-  await fetchDataAndSetupChart(fetchStatisticTruckPerDayByStation, { statistic_type: 'count', date_type: dateTypeStatisticTruckPerDayByStation.value, station_category: stationCategoryStatisticTruckPerDayByStation.value }, chartOptionsStatisticTruckPerDayByStation, chartSeriesStatisticTruckPerDayByStation, 'pie')
-  await fetchDataAndSetupChart(fetchStatisticRitagePerDayByStation, { statistic_type: 'avg', date_type: dateTypeStatisticRitagePerDayByStation.value, station_category: stationCategoryStatisticRitagePerDayByStation.value }, chartOptionsStatisticRitagePerDayByStation, chartSeriesStatisticRitagePerDayByStation, 'pie')
-  await fetchDataAndSetupChart(fetchStatisticMeasurementVolumeByStation, { statistic_type: 'sum', date_type: dateTypeStatisticMeasurementVolumeByStation.value, station_category: stationCategoryStatisticMeasurementVolumeByStation.value }, chartOptionsStatisticMeasurementVolumeByStation, chartSeriesStatisticMeasurementVolumeByStation, 'pie')
-  await fetchDataAndSetupChart(fetchStatisticRitageVolumeByStation, { statistic_type: 'sum', date_type: dateTypeStatisticRitageVolumeByStation.value, station_category: stationCategoryStatisticRitageVolumeByStation.value }, chartOptionsStatisticRitageVolumeByStation, chartSeriesStatisticRitageVolumeByStation, 'pie')
-  await fetchDataAndSetupChart(fetchRatioMeasurementByRitage, { statistic_type: 'avg', date_type: dateTypeStatisticRitageVolumeByStation.value, station_category: stationCategoryStatisticRitageVolumeByStation.value }, chartOptionsRatioMeasurementByRitage, chartSeriesRatioMeasurementByRitage, 'bar')
+  await fetchDataAndSetupChart(fetchStatisticTruckPerDayByStation, { 
+    statistic_type: 'avg', 
+    date_type: dateTypeStatisticTruckPerDayByStation.value, 
+    station_category: stationCategoryStatisticTruckPerDayByStation.value, 
+  }, chartOptionsStatisticTruckPerDayByStation, chartSeriesStatisticTruckPerDayByStation, 'pie')
+
+  await fetchDataAndSetupChart(fetchStatisticRitagePerDayByStation, { 
+    statistic_type: 'avg', 
+    date_type: dateTypeStatisticRitagePerDayByStation.value, 
+    station_category: stationCategoryStatisticRitagePerDayByStation.value, 
+  }, chartOptionsStatisticRitagePerDayByStation, chartSeriesStatisticRitagePerDayByStation, 'pie')
+  
+  await fetchDataAndSetupChart(fetchStatisticRitageVolumeByStation, { 
+    statistic_type: 'sum', 
+    date_type: dateTypeStatisticRitageVolumeByStation.value, 
+    station_category: stationCategoryStatisticRitageVolumeByStation.value, 
+  }, chartOptionsStatisticRitageVolumeByStation, chartSeriesStatisticRitageVolumeByStation, 'pie')
+
+
+  await fetchDataAndSetupChart(fetchStatisticMeasurementVolumeByStation, { 
+    statistic_type: 'sum', 
+    date_type: dateTypeStatisticMeasurementVolumeByStation.value, 
+    station_category: stationCategoryStatisticMeasurementVolumeByStation.value, 
+  }, chartOptionsStatisticMeasurementVolumeByStation, chartSeriesStatisticMeasurementVolumeByStation, 'pie')
+
+  await fetchDataAndSetupChart(fetchRatioMeasurementByRitage, { 
+    statistic_type: 'avg', 
+    date_type: dateTypeStatisticRitageVolumeByStation.value, 
+    station_category: stationCategoryStatisticRitageVolumeByStation.value, 
+  }, chartOptionsRatioMeasurementByRitage, chartSeriesRatioMeasurementByRitage, 'bar')
 }
 
 fetchDataForCharts()
@@ -327,7 +352,7 @@ onMounted(() => {
         lg="6"
       >
         <VCard class="pa-3">
-          <h3>MEASUREMENT VOLUME</h3>
+          <h3>RITAGE VOLUME</h3>
           <VCardText>
             <apexchart
               width="500"
@@ -345,7 +370,7 @@ onMounted(() => {
         lg="6"
       >
         <VCard class="pa-3">
-          <h3>RITAGE VOLUME</h3>
+          <h3>MEASUREMENT VOLUME</h3>
           <VCardText>
             <apexchart
               width="500"
