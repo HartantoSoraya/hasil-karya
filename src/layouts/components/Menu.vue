@@ -23,7 +23,7 @@ const is = roles => {
       to: '/admin/dashboard',
     }"
   />
-  
+
 
   <VerticalNavLink
     v-if="is(['admin'])"
@@ -143,7 +143,20 @@ const is = roles => {
     :item="{
       title: 'Perpindahan Material',
       icon: 'bx-transfer',
-      to: '/admin/material-movement',
+      children: [
+        {
+          title: 'Analisa Per Truk',
+          to: '/admin/material-movement-per-trucks',
+        },
+        {
+          title: 'Perpindahan Material',
+          to: '/admin/material-movement',
+        },
+        {
+          title: 'Estimasi Volume Padat',
+          to: '/admin/material-movement-solid-volume-estimates',
+        }
+      ]
     }"
   />
 

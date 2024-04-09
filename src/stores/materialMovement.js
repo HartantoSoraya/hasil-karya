@@ -128,6 +128,25 @@ export const useMaterialMovementStore = defineStore({
         this.loading = false
       }
     },
+    async fetchMaterialMovementByTruck(id) {
+      try {
+        this.loading = true
+
+        const response = await axiosInstance.get(`/material-movements/read/by-truck/${id}`)
+
+        response.data.data.forEach(movement => {
+          movement.truck.name = `${movement.truck.brand} ${movement.truck.model}`
+        })
+
+        this.movements = response.data.data
+      } catch (error) {
+        this.handleError(error)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    // 1
     async fetchStatisticTruckPerDayByStation(params) {
       try {
         this.loading = true
@@ -141,6 +160,8 @@ export const useMaterialMovementStore = defineStore({
         this.loading = false
       }
     },
+
+    // 2
     async fetchStatisticRitagePerDayByStation(params) {
       try {
         this.loading = true
@@ -154,19 +175,8 @@ export const useMaterialMovementStore = defineStore({
         this.loading = false
       }
     },
-    async fetchStatisticMeasurementVolumeByStation(params) {
-      try {
-        this.loading = true
-  
-        const response = await axiosInstance.get('/material-movements/read/statistic-measurement-volume-by-station', { params })
-        
-        return response.data.data.original
-      } catch (error) {
-        this.handleError(error)
-      } finally {
-        this.loading = false
-      }
-    },
+    
+    // 3
     async fetchStatisticRitageVolumeByStation(params) {
       try {
         this.loading = true
@@ -180,6 +190,23 @@ export const useMaterialMovementStore = defineStore({
         this.loading = false
       }
     },
+
+    // 4
+    async fetchStatisticMeasurementVolumeByStation(params) {
+      try {
+        this.loading = true
+  
+        const response = await axiosInstance.get('/material-movements/read/statistic-measurement-volume-by-station', { params })
+        
+        return response.data.data.original
+      } catch (error) {
+        this.handleError(error)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    // 5
     async fetchRatioMeasurementByRitage(params) {
       try {
         this.loading = true

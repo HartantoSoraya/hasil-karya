@@ -7,6 +7,8 @@ import adminGasOperatorRoutes from "./admin-gas-operator"
 import adminHeavyVehicleRoutes from "./admin-heavy-vehicle"
 import adminMaterialRoutes from "./admin-material"
 import adminMaterialMovementRoutes from "./admin-material-movement"
+import adminMaterialMovementSolidVolumeEstimateRoutes from "./admin-material-movement-solid-volume-estimate"
+import adminMaterialMovementPerTruckRoutes from "./admin-material-movement-per-truck"
 import adminMaterialMovementErrorLogRoutes from "./admin-material-movement-error-log"
 import adminNotificationRecepientRoutes from "./admin-notification-recepient"
 import adminProjectRoutes from "./admin-project"
@@ -23,6 +25,8 @@ const adminRoutes = [
   ...adminTruckRoutes,
   ...adminStationRoutes,
   ...adminMaterialMovementRoutes,
+  ...adminMaterialMovementSolidVolumeEstimateRoutes,
+  ...adminMaterialMovementPerTruckRoutes,
   ...adminMaterialMovementErrorLogRoutes,
   ...adminVendorRoutes,
   ...adminClientRoutes,
