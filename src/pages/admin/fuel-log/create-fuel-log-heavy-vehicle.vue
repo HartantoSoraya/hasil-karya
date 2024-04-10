@@ -40,7 +40,7 @@ const remarks = ref('')
 
 const handleReset = () => {
   code.value = 'AUTO'
-  date.value = null
+  date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 16)
   heavy_vehicle_id.value = ''
   driver_id.value = ''
   station_id.value = ''

@@ -6,10 +6,12 @@ const headers = [
   {
     text: 'Kode',
     value: 'code',
+    sortable: true,
   },
   {
     text: 'Tanggal',
     value: 'date',
+    sortable: true,
   },
   {
     text: 'Jenis Kendaraan',
