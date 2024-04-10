@@ -6,16 +6,19 @@ const headers = [
   {
     text: 'Tanggal',
     value: 'date',
+    sortable: true,
   },
   {
     text: 'Driver',
     value: 'driver.name',
     width: 200,
+    sortable: true,
   },
   {
     text: 'Truck',
     value: 'truck.name',
     width: 200,
+    sortable: true,
   },
   {
     text: 'POS',

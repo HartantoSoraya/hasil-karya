@@ -7,6 +7,7 @@ const headers = [
   {
     text: 'Kode',
     value: 'code',
+    sortable: true,
   },
   {
     text: 'Merek',
@@ -19,6 +20,7 @@ const headers = [
   {
     text: 'Tahun Produksi',
     value: 'production_year',
+    sortable: true,
   },
   {
     text: 'Vendor',
@@ -31,6 +33,7 @@ const headers = [
   {
     text: 'Aktif',
     value: 'is_active',
+    sortable: true,
   },
   {
     text: 'Aksi',

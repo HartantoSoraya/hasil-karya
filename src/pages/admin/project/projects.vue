@@ -6,10 +6,12 @@ const headers = [
     text: 'Kode',
     value: 'code',
     width: 100,
+    sortable: true,
   },
   {
     text: 'Nama',
     value: 'name',
+    sortable: true,
   },
   {
     text: 'Pelanggan',
@@ -29,6 +31,7 @@ const headers = [
     text: 'Status',
     value: 'status',
     width: 100,
+    sortable: true,
   },
   {
     text: 'Aksi',

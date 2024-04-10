@@ -6,10 +6,12 @@ const headers = [
   {
     text: 'Kode',
     value: 'code',
+    sortable: true,
   },
   {
     text: 'Jenis Kendaraan',
     value: 'type',
+    sortable: true,
   },
   {
     text: 'Nama Truk/Alat Berat',
@@ -18,10 +20,12 @@ const headers = [
   {
     text: 'Tanggal Sewa',
     value: 'start_date',
+    sortable: true,
   },
   {
     text: 'Lama Sewa',
     value: 'rental_duration',
+    sortable: true,
   },
   {
     text: 'Tanggal Kembali',
@@ -30,6 +34,7 @@ const headers = [
   {
     text: 'Harga Sewa',
     value: 'rental_cost',
+    sortable: true,
   },
   {
     text: 'Status Jatuh Tempo',

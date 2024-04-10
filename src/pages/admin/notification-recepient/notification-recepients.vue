@@ -5,6 +5,7 @@ const headers = [
   {
     text: 'Nama',
     value: 'name',
+    sortable: true,
   },
   {
     text: 'No HP',
@@ -13,10 +14,12 @@ const headers = [
   {
     text: 'Jabatan',
     value: 'job_title',
+    sortable: true,
   },
   {
     text: 'Aktif',
     value: 'is_active',
+    sortable: true,
   },
   {
     text: 'Aksi',
