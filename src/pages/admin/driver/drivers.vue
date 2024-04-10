@@ -7,6 +7,7 @@ const headers = [
     text: 'Kode',
     value: 'code',
     width: 200,
+    sortable: true,
   },
   {
     text: 'Nama',

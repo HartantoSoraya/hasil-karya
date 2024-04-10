@@ -32,7 +32,7 @@ const handleReset = () => {
   code.value = 'AUTO'
   truck_id.value = null
   heavy_vehicle_id.value = null
-  start_date.value = null
+  start_date.value = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 16)
   rental_duration.value = 0
   rental_cost.value = 0
   is_paid.value = 0

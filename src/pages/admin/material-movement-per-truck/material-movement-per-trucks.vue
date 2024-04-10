@@ -9,6 +9,7 @@ const headers = [
     text: 'Tanggal',
     value: 'date',
     width: 200,
+    sortable: true,
   },
   {
     text: 'Driver',
@@ -29,6 +30,7 @@ const headers = [
     text: 'Pemeriksa',
     value: 'checker.name',
     width: 200,
+    sortable: true,
   },
   {
     text: 'Kapasitas Truk',
