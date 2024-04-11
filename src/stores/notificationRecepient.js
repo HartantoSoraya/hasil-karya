@@ -17,7 +17,7 @@ export const useNotificationRecepientStore = defineStore({
       try {
         this.loading = true
 
-        const response = await axiosInstance.get('/notification-recepient')
+        const response = await axiosInstance.get('/notification-recepients')
 
         this.recepients = response.data.data
       } catch (error) {
